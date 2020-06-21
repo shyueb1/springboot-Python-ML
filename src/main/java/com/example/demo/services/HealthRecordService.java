@@ -1,6 +1,7 @@
 package com.example.demo.services;
 
 import com.example.demo.entities.HealthRecord;
+import com.example.demo.entities.UserP;
 import com.example.demo.repository.HealthRecordRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -28,8 +29,8 @@ public class HealthRecordService {
         return allHealthRecords;
     }
 
-    public HealthRecord getHealthRecordsByUserName(String userName){
-        return healthRecordRepository.findByUserName(userName);
+    public HealthRecord getHealthRecordsByUserName(UserP user){
+        return healthRecordRepository.findByUser(user);
     }
 
     public HealthRecord getHealthRecordByDate(long id, Date date){
