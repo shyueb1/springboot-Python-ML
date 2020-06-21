@@ -1,13 +1,14 @@
 package com.example.demo.services;
 
 import com.example.demo.entities.UserP;
-import com.example.demo.entities.UserP;
 import com.example.demo.repository.UserRepository;
+import org.apache.catalina.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class UserService {
@@ -36,4 +37,8 @@ public class UserService {
     public void deleteUser(UserP user){
         userRepository.delete(user);
     }
+
+    public List<UserP> getUserByEmail(String email){ return userRepository.findByEmail(email); }
+
+    public List<UserP> getUserByUserName(String userName){ return userRepository.findByUserName(userName); }
 }

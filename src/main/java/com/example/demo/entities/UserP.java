@@ -12,6 +12,7 @@ public class UserP {
     @Id
     @GeneratedValue(strategy= GenerationType.AUTO)
     private long id;
+    private String userName;
     private String firstName;
     private String lastName;
     private String email;
@@ -20,8 +21,9 @@ public class UserP {
     private String signUpAge;
     private String signUpDate;
 
-    public UserP(long id, String firstName, String lastName, String email, String password, String location, String signUpAge, String signUpDate) {
+    public UserP(long id, String userName, String firstName, String lastName, String email, String password, String location, String signUpAge, String signUpDate) {
         this.id = id;
+        this.userName = userName;
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
@@ -38,26 +40,29 @@ public class UserP {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        UserP user = (UserP) o;
-        return id == user.id &&
-                Objects.equals(firstName, user.firstName) &&
-                Objects.equals(lastName, user.lastName) &&
-                email.equals(user.email) &&
-                password.equals(user.password) &&
-                location.equals(user.location) &&
-                signUpAge.equals(user.signUpAge) &&
-                signUpDate.equals(user.signUpDate);
+        UserP userP = (UserP) o;
+        return id == userP.id &&
+                userName.equals(userP.userName) &&
+                firstName.equals(userP.firstName) &&
+                lastName.equals(userP.lastName) &&
+                email.equals(userP.email) &&
+                password.equals(userP.password) &&
+                location.equals(userP.location) &&
+                signUpAge.equals(userP.signUpAge) &&
+                signUpDate.equals(userP.signUpDate);
     }
+
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, firstName, lastName, email, password, location, signUpAge, signUpDate);
+        return Objects.hash(id, userName, firstName, lastName, email, password, location, signUpAge, signUpDate);
     }
 
     @Override
     public String toString() {
         return "User{" +
                 "id=" + id +
+                ", userName='" + userName + '\'' +
                 ", firstName='" + firstName + '\'' +
                 ", lastName='" + lastName + '\'' +
                 ", email='" + email + '\'' +
@@ -74,6 +79,10 @@ public class UserP {
     public void setId(long id) {
         this.id = id;
     }
+
+    public String getUserName() { return userName; }
+
+    public void setUserName(String userName) { this.userName = userName; }
 
     public String getFirstName() {
         return firstName;
