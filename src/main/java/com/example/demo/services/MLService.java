@@ -16,15 +16,21 @@ public class MLService {
         String s = null;
         try {
             //Call python script with username arg
-            Process p = Runtime.getRuntime().exec("python src/main/python/MLPredictor.py "+user);
-
-            BufferedReader stdInput = new BufferedReader(new InputStreamReader(p.getInputStream()));
-            BufferedReader stdError = new BufferedReader(new InputStreamReader(p.getErrorStream()));
-
-            // read the output from the command
-            if((s = stdInput.readLine()) != null){
-                prediction = s;
+            ProcessBuilder pb = new ProcessBuilder("/usr/local/Frameworks/Python.framework/Versions/3.7/bin/python3.7", "src/main/python/MLPredictor.py", user);
+            Process process = pb.start();
+            BufferedReader reader =
+                    new BufferedReader(new InputStreamReader(process.getInputStream()));
+            StringBuilder builder = new StringBuilder();
+            String line = null;
+            
+            while ( (line = reader.readLine()) != null) {
+                builder.append(line);
+                builder.append(System.getProperty("line.separator"));
             }
+            String result = builder.toString();
+            prediction = result;
+            BufferedReader stdError = new BufferedReader(new InputStreamReader(process.getErrorStream()));
+
             // read any errors from the attempted command
             while ((s = stdError.readLine()) != null) {
                 System.out.println(s);

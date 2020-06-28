@@ -10,7 +10,6 @@ class Database:
         self.DB_PASS = os.getenv("DB_PASS")
         self.connection = None
         try:
-            print("Initialising DB!")
             self.connection = self.connectToDB()
         except (Exception, psycopg2.DatabaseError) as error:
             print(error)
@@ -33,16 +32,13 @@ class Database:
             return None
 
     def getAllHealthRecords(self, user):
-        return self.query(f"SELECT * FROM healthrecord WHERE user_name={user};")
+        return self.query(f"SELECT * FROM healthrecord WHERE user_name='{user}';")
     
     def getUser(self, user):
-        return self.query(f"SELECT * FROM userp WHERE user_name={user};")
+        return self.query(f"SELECT * FROM userp WHERE user_name='{user}';")
 
 
     def closeConnection(self):
         if self.connection is not None:
             self.connection.close()
-            print("Connection closed!")
-        else:
-            print("No active connection to close.")
         return

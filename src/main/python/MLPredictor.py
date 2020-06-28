@@ -14,10 +14,9 @@ Setup()
 DB = Database()
 user = sys.argv[1]
 print(DB.getUser(user))
+DB.closeConnection()
 
 
-# def getAllHealthRecord(user):
-#     pass
 # def normaliseData():
 #     pass
 # def getPrediction():
@@ -26,14 +25,3 @@ print(DB.getUser(user))
 
 
 # nn = new NearestNeighbour()
-
-
-
-# try:
-# close the communication with the PostgreSQL
-# cur.close()
-# execute a statement
-# print('PostgreSQL database version:')
-# DB.execute('SELECT version()')
-# db_version = DB.fetchone()
-# print(db_version)
