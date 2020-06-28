@@ -8,13 +8,8 @@ import java.io.InputStreamReader;
 
 @Service
 public class MLService {
-    public MLService() {
-    }
 
-    public static void main(String[] args) throws IOException {
-        MLService ml = new MLService();
-        ml.getPrediction("");
-    }
+    public MLService() {}
 
     public String getPrediction(String user){
         String prediction = "";

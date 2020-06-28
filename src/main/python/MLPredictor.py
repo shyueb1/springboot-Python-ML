@@ -7,25 +7,33 @@
 """
 
 import sys
-import psycopg2
-from decouple import config
+from Database import Database
+from Setup import Setup
 
-DB_NAME = config("DB_NAME")
-DB_HOST = config("DB_HOST")
-DB_USER = config("DB_USER")
-DB_PASS = config("DB_PASS")
-
-
-def connectToDB():
-    pass
-def getHealthRecord():
-    pass
-def normaliseData():
-    pass
-def getPrediction():
-    pass
-
+Setup()
+DB = Database()
 user = sys.argv[1]
-# db = new Database()
+print(DB.getUser(user))
+
+
+# def getAllHealthRecord(user):
+#     pass
+# def normaliseData():
+#     pass
+# def getPrediction():
+#     pass
+
+
+
 # nn = new NearestNeighbour()
 
+
+
+# try:
+# close the communication with the PostgreSQL
+# cur.close()
+# execute a statement
+# print('PostgreSQL database version:')
+# DB.execute('SELECT version()')
+# db_version = DB.fetchone()
+# print(db_version)

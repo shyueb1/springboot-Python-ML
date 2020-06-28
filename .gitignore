@@ -1,4 +1,4 @@
-src/main/.env
+.env
 *#
 *.iml
 *.ipr
