@@ -32,7 +32,7 @@ class Database:
             return None
 
     def getAllHealthRecords(self, user):
-        return self.query(f"SELECT * FROM health_record WHERE user_id='{user}';")
+        return self.query(f"SELECT calorie_intake, exceeded_calorie_limit, period_greatest_calorie_intake, water_intake, weight FROM health_record WHERE user_id='{user}';")
     
     def getUser(self, user):
         return self.query(f"SELECT * FROM userp WHERE user_id='{user}';")

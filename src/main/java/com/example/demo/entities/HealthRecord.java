@@ -21,6 +21,10 @@ public class HealthRecord {
     @ManyToOne(optional = false)
     private UserP user;
 
+    /**
+     * TODO: add hours_of_sleep, tiredness, activity_level columns to HealthRecord
+     */
+
     public HealthRecord(){}
 
     public HealthRecord(long id, Date date, int caloriesIntake, Boolean exceededCalorieLimit, int weight, int waterIntake, TimePeriod periodGreatestCalorieIntake, UserP user) {
