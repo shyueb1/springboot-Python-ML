@@ -9,11 +9,12 @@ public class UserGoal {
     @Id
     @GeneratedValue(strategy= GenerationType.AUTO)
     private long id;
-    @ManyToOne
+    @OneToOne
+    @JoinColumn(nullable = false)
     private UserP user;
-    private int calorieGoal;
-    private int weightGoal;
-    private int waterGoal;
+    private double calorieGoal;
+    private double weightGoal;
+    private double waterGoal;
 
     public UserGoal(long id, UserP user, int calorieGoal, int weightGoal, int waterGoal) {
         this.id = id;
@@ -41,15 +42,15 @@ public class UserGoal {
         this.user = user;
     }
 
-    public int getCalorieGoal() {
+    public double getCalorieGoal() {
         return calorieGoal;
     }
 
-    public void setCalorieGoal(int calorieGoal) {
+    public void setCalorieGoal(double calorieGoal) {
         this.calorieGoal = calorieGoal;
     }
 
-    public int getWeightGoal() {
+    public double getWeightGoal() {
         return weightGoal;
     }
 
@@ -57,7 +58,7 @@ public class UserGoal {
         this.weightGoal = weightGoal;
     }
 
-    public int getWaterGoal() {
+    public double getWaterGoal() {
         return waterGoal;
     }
 

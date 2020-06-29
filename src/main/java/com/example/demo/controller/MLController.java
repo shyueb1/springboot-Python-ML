@@ -13,10 +13,10 @@ public class MLController {
     @Autowired
     MLService mlService;
 
-    @RequestMapping("/ml/prediction/{user}")
+    @RequestMapping("/ml/prediction/{id}")
     @ResponseBody
-    public String getPrediction(@PathVariable String user){
-        return mlService.getPrediction(user);
+    public String getPrediction(@PathVariable long id){
+        return mlService.getPrediction(id);
     }
 
     @RequestMapping("/ml/test")

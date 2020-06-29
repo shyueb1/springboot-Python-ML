@@ -11,38 +11,22 @@ public class HealthRecord {
     @GeneratedValue(strategy= GenerationType.AUTO)
     private long id;
     private Date date;
-    private int caloriesIntake;
+    private double calorieIntake;
     private Boolean exceededCalorieLimit;
-    private int weight;
-    private int waterIntake;
+    private double weight;
+    private double waterIntake;
+    @Enumerated(EnumType.STRING)
     private TimePeriod periodGreatestCalorieIntake;
-    @ManyToOne
+    @JoinColumn(nullable = false)
+    @ManyToOne(optional = false)
     private UserP user;
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        HealthRecord that = (HealthRecord) o;
-        return id == that.id &&
-                caloriesIntake == that.caloriesIntake &&
-                weight == that.weight &&
-                waterIntake == that.waterIntake &&
-                date.equals(that.date) &&
-                exceededCalorieLimit.equals(that.exceededCalorieLimit) &&
-                periodGreatestCalorieIntake == that.periodGreatestCalorieIntake &&
-                user.equals(that.user);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(id, date, caloriesIntake, exceededCalorieLimit, weight, waterIntake, periodGreatestCalorieIntake, user);
-    }
+    public HealthRecord(){}
 
     public HealthRecord(long id, Date date, int caloriesIntake, Boolean exceededCalorieLimit, int weight, int waterIntake, TimePeriod periodGreatestCalorieIntake, UserP user) {
         this.id = id;
         this.date = date;
-        this.caloriesIntake = caloriesIntake;
+        this.calorieIntake = caloriesIntake;
         this.exceededCalorieLimit = exceededCalorieLimit;
         this.weight = weight;
         this.waterIntake = waterIntake;
@@ -66,12 +50,12 @@ public class HealthRecord {
         this.date = date;
     }
 
-    public int getCaloriesIntake() {
-        return caloriesIntake;
+    public double getCaloriesIntake() {
+        return calorieIntake;
     }
 
-    public void setCaloriesIntake(int caloriesIntake) {
-        this.caloriesIntake = caloriesIntake;
+    public void setCaloriesIntake(double caloriesIntake) {
+        this.calorieIntake = caloriesIntake;
     }
 
     public Boolean getExceededCalorieLimit() {
@@ -82,19 +66,19 @@ public class HealthRecord {
         this.exceededCalorieLimit = exceededCalorieLimit;
     }
 
-    public int getWeight() {
+    public double getWeight() {
         return weight;
     }
 
-    public void setWeight(int weight) {
+    public void setWeight(double weight) {
         this.weight = weight;
     }
 
-    public int getWaterIntake() {
+    public double getWaterIntake() {
         return waterIntake;
     }
 
-    public void setWaterIntake(int waterIntake) {
+    public void setWaterIntake(double waterIntake) {
         this.waterIntake = waterIntake;
     }
 
@@ -112,6 +96,26 @@ public class HealthRecord {
 
     public void setUser(UserP user) {
         this.user = user;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        HealthRecord that = (HealthRecord) o;
+        return id == that.id &&
+                calorieIntake == that.calorieIntake &&
+                weight == that.weight &&
+                waterIntake == that.waterIntake &&
+                date.equals(that.date) &&
+                exceededCalorieLimit.equals(that.exceededCalorieLimit) &&
+                periodGreatestCalorieIntake == that.periodGreatestCalorieIntake &&
+                user.equals(that.user);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, date, calorieIntake, exceededCalorieLimit, weight, waterIntake, periodGreatestCalorieIntake, user);
     }
 
 }

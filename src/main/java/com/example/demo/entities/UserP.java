@@ -1,9 +1,7 @@
 package com.example.demo.entities;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
+import java.sql.Date;
 import java.util.Objects;
 
 @Entity
@@ -12,16 +10,19 @@ public class UserP {
     @Id
     @GeneratedValue(strategy= GenerationType.AUTO)
     private long id;
+    @Column(nullable = false)
     private String userName;
     private String firstName;
     private String lastName;
+    @Column(nullable = false)
     private String email;
+    @Column(nullable = false)
     private String password;
     private String location;
-    private String signUpAge;
-    private String signUpDate;
+    private int signUpAge;
+    private Date signUpDate;
 
-    public UserP(long id, String userName, String firstName, String lastName, String email, String password, String location, String signUpAge, String signUpDate) {
+    public UserP(long id, String userName, String firstName, String lastName, String email, String password, String location, int signUpAge, Date signUpDate) {
         this.id = id;
         this.userName = userName;
         this.firstName = firstName;
@@ -33,8 +34,7 @@ public class UserP {
         this.signUpDate = signUpDate;
     }
 
-    public UserP() {
-    }
+    public UserP() {}
 
     @Override
     public boolean equals(Object o) {
@@ -48,28 +48,8 @@ public class UserP {
                 email.equals(userP.email) &&
                 password.equals(userP.password) &&
                 location.equals(userP.location) &&
-                signUpAge.equals(userP.signUpAge) &&
+                signUpAge == userP.signUpAge &&
                 signUpDate.equals(userP.signUpDate);
-    }
-
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(id, userName, firstName, lastName, email, password, location, signUpAge, signUpDate);
-    }
-
-    @Override
-    public String toString() {
-        return "User{" +
-                "id=" + id +
-                ", userName='" + userName + '\'' +
-                ", firstName='" + firstName + '\'' +
-                ", lastName='" + lastName + '\'' +
-                ", email='" + email + '\'' +
-                ", location='" + location + '\'' +
-                ", signUpAge='" + signUpAge + '\'' +
-                ", signUpDate='" + signUpDate + '\'' +
-                '}';
     }
 
     public long getId() {
@@ -124,21 +104,39 @@ public class UserP {
         this.location = location;
     }
 
-    public String getSignUpAge() {
+    public int getSignUpAge() {
         return signUpAge;
     }
 
-    public void setSignUpAge(String signUpAge) {
+    public void setSignUpAge(int signUpAge) {
         this.signUpAge = signUpAge;
     }
 
-    public String getSignUpDate() {
+    public Date getSignUpDate() {
         return signUpDate;
     }
 
-    public void setSignUpDate(String signUpDate) {
+    public void setSignUpDate(Date signUpDate) {
         this.signUpDate = signUpDate;
     }
 
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, userName, firstName, lastName, email, password, location, signUpAge, signUpDate);
+    }
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "id=" + id +
+                ", userName='" + userName + '\'' +
+                ", firstName='" + firstName + '\'' +
+                ", lastName='" + lastName + '\'' +
+                ", email='" + email + '\'' +
+                ", location='" + location + '\'' +
+                ", signUpAge='" + signUpAge + '\'' +
+                ", signUpDate='" + signUpDate + '\'' +
+                '}';
+    }
 
 }

@@ -1,6 +1,7 @@
 package com.example.demo.controller;
 
 import com.example.demo.entities.HealthRecord;
+import com.example.demo.entities.UserP;
 import com.example.demo.services.HealthRecordService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -21,16 +22,23 @@ public class HealthRecordController {
         return healthRecordService.getAllHealthRecords();
     }
 
+//    @RequestMapping("/healthrecords/{id}")
+//    @ResponseBody
+//    public List<HealthRecord> getAllHealthRecordsById(@PathVariable long id){
+//        List<HealthRecord> records = healthRecordService.getHealthRecordsById(id);
+//        return records;
+//    }
+
     @RequestMapping("/healthrecords/{id}")
     @ResponseBody
-    public List<HealthRecord> getAllHealthRecordsById(@RequestParam long id){
-        List<HealthRecord> records = healthRecordService.getHealthRecordsById(id);
+    public List<HealthRecord> getAllHealthRecordsByUserId(@PathVariable long id){
+        List<HealthRecord> records = healthRecordService.getHealthRecordsByUser(new UserP(id, "", "", "", "", "", "",0, new Date(System.nanoTime())));
         return records;
     }
 
     @RequestMapping("/healthrecords/{id}/{date}")
     @ResponseBody
-    public HealthRecord getAllHealthRecordsByDate(@RequestParam long id, @RequestParam Date date){
+    public HealthRecord getAllHealthRecordsByDate(@PathVariable long id, @PathVariable Date date){
         return healthRecordService.getHealthRecordByDate(id, date);
     }
 

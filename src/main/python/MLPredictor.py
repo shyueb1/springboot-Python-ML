@@ -12,8 +12,8 @@ from Setup import Setup
 
 Setup()
 DB = Database()
-user = sys.argv[1]
-print(DB.getUser(user))
+user = int(sys.argv[1])
+print(DB.getAllHealthRecords(user))
 DB.closeConnection()
 
 

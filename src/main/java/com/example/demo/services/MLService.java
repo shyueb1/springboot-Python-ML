@@ -11,18 +11,18 @@ public class MLService {
 
     public MLService() {}
 
-    public String getPrediction(String user){
+    public String getPrediction(long user){
         String prediction = "";
         String s = null;
         try {
             //Call python script with username arg
-            ProcessBuilder pb = new ProcessBuilder("/usr/local/Frameworks/Python.framework/Versions/3.7/bin/python3.7", "src/main/python/MLPredictor.py", user);
+            ProcessBuilder pb = new ProcessBuilder("/usr/local/Frameworks/Python.framework/Versions/3.7/bin/python3.7", "src/main/python/MLPredictor.py", ""+user);
             Process process = pb.start();
             BufferedReader reader =
                     new BufferedReader(new InputStreamReader(process.getInputStream()));
             StringBuilder builder = new StringBuilder();
             String line = null;
-            
+
             while ( (line = reader.readLine()) != null) {
                 builder.append(line);
                 builder.append(System.getProperty("line.separator"));

@@ -29,9 +29,9 @@ public class HealthRecordService {
         return allHealthRecords;
     }
 
-    public HealthRecord getHealthRecordsByUserName(UserP user){
-        return healthRecordRepository.findByUser(user);
-    }
+//    public HealthRecord getHealthRecordsByUserName(UserP user){
+//        return healthRecordRepository.findByUser(user);
+//    }
 
     public HealthRecord getHealthRecordByDate(long id, Date date){
         return healthRecordRepository.findByIdAndDate(id, date);
@@ -46,4 +46,6 @@ public class HealthRecordService {
     public Boolean willBeOver(){ return false; }
 
     public Boolean willBeUnder(){ return false; }
+
+    public List<HealthRecord> getHealthRecordsByUser(UserP user) { return healthRecordRepository.findByUser(user);}
 }
